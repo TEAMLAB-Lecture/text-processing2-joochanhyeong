@@ -28,8 +28,14 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
-    return digit_string
+    digit_string = ""
+    if(len(input_string)==0):
+        return ""
+    numbers=[int(e) for e in input_string if e.isdigit()]
+    mapping_dict={1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight",9:"nine",0:"zero"}
+    for e in numbers:
+        digit_string+=(mapping_dict[e]+" ")
+    return digit_string[:-1]
 
 
 """
@@ -64,5 +70,18 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    camelcase_str = ""
+    if("_" not in underscore_str or len(underscore_str)==0 ):
+        return underscore_str
+    not_under = [ e for e in underscore_str.split("_") if e ]
+    for idx,e in enumerate(not_under):
+        if idx==0:
+            camelcase_str+=e.lower()
+            continue
+        camelcase_str+=e.capitalize()
     return camelcase_str
+# print(digits_to_words("Zip Code: 19104"))
+# print(digits_to_words("Pi is 3.1415..."))
+# print(to_camel_case("to_camel_case"))
+# print(to_camel_case("__EXAMPLE__NAME__"))
+# print(to_camel_case("alreadyCamel"))
